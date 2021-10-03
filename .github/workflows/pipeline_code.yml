@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [12.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -36,6 +36,7 @@ jobs:
     - run: npm test
     - run: docker build . -t bob/node-web-app
     - run: docker images -a
+    - run: docker run -it --name node-dru alpine sh
     - run: docker container ls -a
     
     #- run: docker commit 696bc099e661 nogomerl/node-dru
