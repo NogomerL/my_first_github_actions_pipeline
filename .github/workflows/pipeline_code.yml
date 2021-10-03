@@ -42,4 +42,4 @@ jobs:
     - run: docker commit node-dru nogomerl/node-dru
     - run: docker images -a
     - run: docker login
-    #- run: docker push nogomerl/node-dru
+    - run: docker push nogomerl/node-dru
