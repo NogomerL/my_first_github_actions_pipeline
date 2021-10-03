@@ -35,3 +35,8 @@ jobs:
     - run: npm i
     - run: npm test
     - run: docker build . -t bob/node-web-app
+    - run: docker images -a
+    
+    #- run: docker commit 696bc099e661 nogomerl/node-dru
+    #- run: docker login
+    #- run: docker push nogomerl/node-dru
