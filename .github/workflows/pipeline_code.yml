@@ -36,7 +36,7 @@ jobs:
     - run: npm test
     - run: docker build . -t bob/node-web-app
     - run: docker images -a
-    - run: docker run -it --name node-dru alpine sh
+    - run: docker run --name node-dru alpine sh
     - run: docker container ls -a
     
     #- run: docker commit 696bc099e661 nogomerl/node-dru
