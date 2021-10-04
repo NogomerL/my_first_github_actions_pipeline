@@ -41,6 +41,6 @@ jobs:
     
     - run: docker commit node-dru nogomerl/node-dru
     - run: docker images -a
-    - run: secrethub service init company/app --permission docker:read
+    - run: echo "Hello World" | secrethub write nogomerl/start/hello
     #- run: docker login
     #- run: docker push nogomerl/node-dru
