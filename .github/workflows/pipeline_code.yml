@@ -41,6 +41,14 @@ jobs:
     
     - run: docker commit node-dru nogomerl/node-dru
     - run: docker images -a
-    - run: echo "Hello World" | secrethub write nogomerl/start/hello
+    
+    - uses: secrethub/actions/env-export@v0.2.1
+      env:
+          SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
+          DOCKER_USERNAME: secrethub://company/app/docker/username
+          DOCKER_PASSWORD: secrethub://company/app/docker/password
+    - name: Publish Docker image
+      run: |
+          echo "nogomerl" | docker login -u "1Q2w3e4r5t" --password-stdin
     #- run: docker login
     #- run: docker push nogomerl/node-dru
