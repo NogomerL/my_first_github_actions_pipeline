@@ -5,12 +5,9 @@ name: Node.js_pipeline_code
 
 on:
   push:
-    branches:
-      -master
-      - release/*
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
     
 env:
   # Use docker.io for Docker Hub if empty
@@ -35,7 +32,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        
     - run: npm i
     - run: npm test
     - run: docker build . -t bob/node-web-app
@@ -48,4 +44,4 @@ jobs:
     
     - run: docker login
     - run: docker pull node-web-app
-    #- run: docker push nogomerl/node-web-app
+    #- run: docker push nogomerl/node-dru
