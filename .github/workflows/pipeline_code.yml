@@ -34,12 +34,20 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm test
-    - run: docker build . -t bob/node-web-app
+    - run: docker build . -t nogomerl/node-web-app
     - run: docker images -a
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: nogomerl/node-web-app
+        tags: latest, ${{ github.run_number }}
+
     #- run: docker run --name node-dru alpine sh
     #- run: docker container ls -a
     #- run: docker commit node-dru nogomerl/node-dru
     #- run: docker images -a
-    - run: docker login
-    - run: docker push nogomerl/node-web-app
+    #- run: docker login
+    #- run: docker push nogomerl/node-web-app
     #- run: docker push nogomerl/node-dru
