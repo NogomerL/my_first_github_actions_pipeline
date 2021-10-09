@@ -36,14 +36,18 @@ jobs:
     - run: npm test
     - run: docker build . -t nogomerl/node-web-app
     - run: docker images -a
-    - name: Push to Docker Hub
-      uses: docker/build-push-action@v2
+    
+    - name: Log in to Docker Hub
+      uses: docker/login-action@2
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        push: true
-        repository: nogomerl/my_first_repository_jenkins
-        tags: latest, ${{ github.run_number }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+    - name: Build and push Docker image
+      uses: docker/build-push-action@2
+      with:
+          context: .
+          push: true
         
     #- run: docker run --name node-dru alpine sh
     #- run: docker container ls -a
