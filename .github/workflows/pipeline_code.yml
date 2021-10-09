@@ -54,8 +54,9 @@ jobs:
       with:
         push: true
         repository: nogomerl/node-web-app
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        tags: latest
+        #tags: ${{ steps.meta.outputs.tags }}
+        #labels: ${{ steps.meta.outputs.labels }}
         
     #- run: docker run --name node-dru alpine sh
     #- run: docker container ls -a
