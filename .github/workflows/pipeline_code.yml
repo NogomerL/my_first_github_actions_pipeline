@@ -43,6 +43,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: nogomerl/my_first_repository_jenkins
         tags: latest, ${{ github.run_number }}
+        push: nogomerl/node-web-app
 
     #- run: docker run --name node-dru alpine sh
     #- run: docker container ls -a
