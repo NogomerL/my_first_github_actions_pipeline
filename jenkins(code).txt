@@ -1,0 +1,27 @@
+pipeline {
+         agent any
+         
+         stages {
+                 stage('Test') {
+                    steps 
+                    {
+                        echo "Start testing ..."
+                        
+                        sh 'npm i'
+                        sh 'npm test'
+                        sh 'docker build . -t nogomerl/node-web-app'
+                        sh 'docker images -a'
+                    }
+                 }
+                 stage('Push docker image to Dockerhub'){
+                     steps{
+                         withDockerRegistry(credentialsId: 'git', url: 'https://index.docker.io/v1/') {
+                             sh '''
+                                 docker push nogomerl/node-web-app
+                            '''
+                         }
+                     }
+                 }
+
+                }
+         }
