@@ -26,8 +26,11 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Actions Checkout
+      uses: actions/checkout@v2
+    #Use Node.js ${{ matrix.node-version }}
+    
+    - name: Test Code
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
@@ -37,16 +40,17 @@ jobs:
     #- run: docker build . -t nogomerl/node-web-app
     #- run: docker images -a
     ##########
-    - name: docker login
+    - name: Docker Login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD1}}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+        
     - name: Build the Docker image
       run: docker build . -t nogomerl/node-web-app
       
-    - name: Docker Push
+    - name: Push the Docker image
       run: docker push nogomerl/node-web-app
       
         
